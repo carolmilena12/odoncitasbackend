@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const tratamientoCtrl = require('../controllers/tratamiento.controller');
-const verificarToken = require('../middlewares/verificarToken');
+const verificarToken = require('../middlewares/authMiddleware');
 
 router.post('/', verificarToken, tratamientoCtrl.crearTratamiento);
 router.get('/', verificarToken, tratamientoCtrl.obtenerTratamientos);

@@ -1,4 +1,4 @@
-const recepcionistaService = require('../services/recepcionistaService');
+const recepcionistaService = require('../services/recespcionista.service');
 
 exports.crearRecepcionista = async (req, res) => {
   try {

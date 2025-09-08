@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const recepcionistaCtrl = require('../controllers/recepcionista.controller');
-const verificarToken = require('../middlewares/verificarToken');
+const recepcionistaCtrl = require('../controllers/recepcionistacontroller');
+const verificarToken = require('../middlewares/authMiddleware');
 
 router.post('/', verificarToken, recepcionistaCtrl.crearRecepcionista);
 router.get('/', verificarToken, recepcionistaCtrl.obtenerRecepcionistas);

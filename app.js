@@ -27,11 +27,11 @@ app.get('/', (req, res) => {
 app.use('/api', testRoutes);                // Tus rutas de prueba originales
 app.use('/api/auth', authRoutes);           // Nueva ruta para autenticación (Firebase)
 app.use('/api/usuarios', usuariosRoutes);   // Tus rutas CRUD existentes (ahora separadas)
-app.use('/api/pacientes', require('./routes/pacientes'));
-app.use('/api/medicos', require('./routes/medicos'));
-app.use('/api/citas', require('./routes/citas'));
-app.use('/api/historial', require('./routes/historial'));
-app.use('/api/recepcionistas', require('./routes/recepcionistas'));
-
+app.use('/api/pacientes', require('./routes/pacienteRoutes'));
+app.use('/api/medicos', require('./routes/medico.routes'));
+app.use('/api/citas', require('./routes/citasRoutes'));
+app.use('/api/historial', require('./routes/tratamientoRoutes'));
+app.use('/api/recepcionistas', require('./routes/recepcionistaroutes'));
+app.use('/uploads', express.static('uploads'));
 // Exportar la instancia de Express
 module.exports = app;

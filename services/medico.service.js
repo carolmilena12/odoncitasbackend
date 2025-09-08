@@ -1,10 +1,10 @@
 const db = require('../config/db');
 
 async function crearMedico(medico) {
-  const { nombre, especialidad, correo } = medico;
+  const { nombre, correo, matricula, foto } = medico; // Removió especialidad
   const [result] = await db.promise().execute(
-    `INSERT INTO medicos (nombre, especialidad, correo) VALUES (?, ?, ?)`,
-    [nombre, especialidad, correo]
+    `INSERT INTO medicos (nombre, correo, matricula, foto) VALUES (?, ?, ?, ?)`, // Removió especialidad
+    [nombre, correo, matricula, foto] // Removió especialidad
   );
   return result.insertId;
 }
@@ -15,11 +15,19 @@ async function obtenerMedicos() {
 }
 
 async function actualizarMedico(id, datos) {
-  const { nombre, especialidad, correo } = datos;
-  await db.promise().execute(
-    `UPDATE medicos SET nombre = ?, especialidad = ?, correo = ? WHERE id = ?`,
-    [nombre, especialidad, correo, id]
-  );
+  const { nombre, correo, matricula, foto } = datos; // Removió especialidad
+  let query = `UPDATE medicos SET nombre = ?, correo = ?, matricula = ?`; // Removió especialidad
+  const params = [nombre, correo, matricula]; // Removió especialidad
+
+  if (foto) {
+    query += `, foto = ?`;
+    params.push(foto);
+  }
+
+  query += ` WHERE id = ?`;
+  params.push(id);
+
+  await db.promise().execute(query, params);
 }
 
 async function eliminarMedico(id) {

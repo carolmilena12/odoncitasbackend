@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const pacienteCtrl = require('../controllers/paciente.controller');
-const verificarToken = require('../middlewares/verificarToken');
+const pacienteCtrl = require('../controllers/pacienteController');
+const verificarToken = require('../middlewares/authMiddleware');
 
 router.post('/', verificarToken, pacienteCtrl.crearPaciente);
 router.get('/', verificarToken, pacienteCtrl.obtenerPacientes);

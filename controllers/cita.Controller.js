@@ -1,4 +1,4 @@
-const citaService = require('../services/citaService');
+const citaService = require('../services/citasService');
 
 exports.crearCita = async (req, res) => {
   try {

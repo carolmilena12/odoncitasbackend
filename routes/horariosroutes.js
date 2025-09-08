@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const horarioCtrl = require('../controllers/horario.controller');
-const verificarToken = require('../middlewares/verificarToken');
+const verificarToken = require('../middlewares/authMiddleware');
 
 router.post('/', verificarToken, horarioCtrl.crearHorario);
 router.get('/', verificarToken, horarioCtrl.obtenerHorarios);

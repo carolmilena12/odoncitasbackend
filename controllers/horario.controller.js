@@ -1,37 +1,44 @@
-const horarioService = require('../services/horarioService');
+const medicoService = require('../services/medico.service');
 
-exports.crearHorario = async (req, res) => {
+// Crear médico con imagen
+exports.crearMedico = async (req, res) => {
   try {
-    const id = await horarioService.crearHorario(req.body);
-    res.status(201).json({ id });
+    const foto = req.file ? req.file.filename : null; // si hay imagen la guardamos
+    const id = await medicoService.crearMedico(req.body, foto);
+    res.status(201).json({ id, mensaje: 'Médico creado correctamente' });
   } catch (err) {
-    res.status(500).json({ mensaje: 'Error al crear horario' });
+    console.error(err);
+    res.status(500).json({ mensaje: 'Error al crear médico' });
   }
 };
 
-exports.obtenerHorarios = async (req, res) => {
+// Obtener médicos
+exports.obtenerMedicos = async (req, res) => {
   try {
-    const horarios = await horarioService.obtenerHorarios();
-    res.json(horarios);
+    const medicos = await medicoService.obtenerMedicos();
+    res.json(medicos);
   } catch (err) {
-    res.status(500).json({ mensaje: 'Error al obtener horarios' });
+    res.status(500).json({ mensaje: 'Error al obtener médicos' });
   }
 };
 
-exports.actualizarHorario = async (req, res) => {
+// Actualizar médico (con opción de nueva imagen)
+exports.actualizarMedico = async (req, res) => {
   try {
-    await horarioService.actualizarHorario(req.params.id, req.body);
-    res.json({ mensaje: 'Horario actualizado' });
+    const foto = req.file ? req.file.filename : null;
+    await medicoService.actualizarMedico(req.params.id, req.body, foto);
+    res.json({ mensaje: 'Médico actualizado correctamente' });
   } catch (err) {
-    res.status(500).json({ mensaje: 'Error al actualizar horario' });
+    res.status(500).json({ mensaje: 'Error al actualizar médico' });
   }
 };
 
-exports.eliminarHorario = async (req, res) => {
+// Eliminar médico
+exports.eliminarMedico = async (req, res) => {
   try {
-    await horarioService.eliminarHorario(req.params.id);
-    res.json({ mensaje: 'Horario eliminado' });
+    await medicoService.eliminarMedico(req.params.id);
+    res.json({ mensaje: 'Médico eliminado correctamente' });
   } catch (err) {
-    res.status(500).json({ mensaje: 'Error al eliminar horario' });
+    res.status(500).json({ mensaje: 'Error al eliminar médico' });
   }
 };

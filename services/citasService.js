@@ -1,7 +1,5 @@
 const db = require('../config/db');
 
-const db = require('../config/db');
-
 async function crearCita(cita) {
   const { paciente_id, medico_id, fecha, motivo, estado } = cita;
 

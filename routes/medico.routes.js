@@ -41,5 +41,3 @@ router.get('/:id/foto', async (req, res) => {
 });
 
 module.exports = router;
-
-module.exports = router;

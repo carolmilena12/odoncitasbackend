@@ -12,4 +12,11 @@ router.get('/citas', verificarTokenYRol(['medico', 'recepcionista']), (req, res)
   res.json({ message: 'Bienvenido al sistema de citas' });
 });
 
+router.post('/test', (req, res) => {
+  res.json({ message: 'Bienvenida, administradora' });
+});
+
+router.get('/test', (req, res) => {
+  res.json({ message: 'Bienvenida, administradora con GET' });
+});
 module.exports = router;
